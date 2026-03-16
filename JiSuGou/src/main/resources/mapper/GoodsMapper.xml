@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xpl.jisugou.mapper.GoodsMapper">
+
+    <!-- 查询所有商品 -->
+    <select id="selectAll" resultType="com.xpl.jisugou.entity.Goods">
+        SELECT 
+            id,
+            name,
+            price,
+            stock
+        FROM goods
+    </select>
+
+    <!-- 根据 ID 查询商品 -->
+    <select id="selectById" resultType="com.xpl.jisugou.entity.Goods">
+        SELECT 
+            id,
+            name,
+            price,
+            stock
+        FROM goods
+        WHERE id = #{id}
+    </select>
+
+    <!-- 更新库存 -->
+    <update id="updateStock">
+        UPDATE goods
+        SET stock = stock - #{num}
+        WHERE id = #{goodsId} AND stock >= #{num}
+    </update>
+
+</mapper>
